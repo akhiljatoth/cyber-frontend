@@ -11,11 +11,11 @@ interface TabItem {
 }
 
 const tabs: TabItem[] = [
-  { key: "executive-insight", label: "Executive Insight", path: "/executive-insight" },
-  { key: "alerts-insight", label: "Alerts Insight", path: "/alerts-insight" },
-  { key: "asset-inventory", label: "Advisories", path: "/asset-inventory" },
-  { key: "news-flash", label: "NewsFlash", path: "/news-flash" },
-  { key: "newsfeed", label: "Newsfeed", path: "/newsfeed" },
+  { key: "executive-insight", label: "Executive Insight", path: "/dashboard/executive-insight" },
+  { key: "alerts-insight", label: "Alerts Insight", path: "/dashboard/alerts-insight" },
+  { key: "advisories", label: "Advisories", path: "/dashboard/advisories" },
+  { key: "news-flash", label: "NewsFlash", path: "/dashboard/news-flash" },
+  { key: "newsfeed", label: "Newsfeed", path: "/dashboard/newsfeed" },
 ]
 
 export function NavigationTabs() {

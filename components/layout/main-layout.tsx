@@ -5,12 +5,13 @@ import { usePathname } from "next/navigation"
 import { Box } from "@mui/material"
 import { Sidebar } from "@/components/sidebar"
 import { NavigationTabs } from "@/components/layout/navigation-tabs"
+import { GlobalHeader } from "@/components/layout/global-header"
 
-interface DashboardLayoutProps {
+interface MainLayoutProps {
   children: React.ReactNode
 }
 
-export function DashboardLayout({ children }: DashboardLayoutProps) {
+export function MainLayout({ children }: MainLayoutProps) {
   const pathname = usePathname()
 
   // Only show dashboard tabs and header on main dashboard routes
@@ -22,8 +23,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     "/dashboard/newsfeed"
   ].includes(pathname)
 
+  // Don't show sidebar and layout on root page (it redirects anyway)
+  if (pathname === "/") {
+    return <>{children}</>
+  }
+
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
+      {/* Global Header - Always visible */}
+      <GlobalHeader />
+
       <Box sx={{ display: "flex" }}>
         <Sidebar />
         {/* Main Content */}

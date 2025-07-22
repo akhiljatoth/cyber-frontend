@@ -20,7 +20,7 @@ export function Sidebar() {
   const pathname = usePathname()
 
   const menuItems = [
-    { icon: BarChart, label: "Dashboard", path: "/executive-insight", active: pathname.startsWith("/executive-insight") || pathname.startsWith("/alerts-insight") || pathname.startsWith("/asset-inventory") || pathname.startsWith("/news-flash") || pathname.startsWith("/newsfeed") },
+    { icon: BarChart, label: "Dashboard", path: "/dashboard", active: pathname.startsWith("/dashboard") },
     { icon: Public, label: "Attack Surface", path: "/attack-surface" },
     { icon: Visibility, label: "Threat Intelligence", path: "/threat-intelligence" },
     { icon: People, label: "Geolocation", path: "/geolocation", hasSubmenu: true },
@@ -47,10 +47,12 @@ export function Sidebar() {
         "& .MuiDrawer-paper": {
           width: 256,
           boxSizing: "border-box",
-          bgcolor: "grey.50",
+          bgcolor: "background.paper",
           borderRight: "1px solid",
           borderColor: "grey.200",
           position: "relative",
+          height: "calc(100vh - 64px)", // Account for header height
+          top: 0,
         },
       }}
     >

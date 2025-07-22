@@ -3,9 +3,12 @@
 import React from "react"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { CssBaseline } from "@mui/material"
+import { ThemeProvider as NextThemeProvider } from "@/components/providers/theme-provider"
+import { useTheme } from "next-themes"
 
-const theme = createTheme({
+const createAppTheme = (mode: 'light' | 'dark') => createTheme({
   palette: {
+    mode,
     primary: {
       main: "#1976d2",
     },
@@ -13,19 +16,24 @@ const theme = createTheme({
       main: "#46e595",
     },
     background: {
-      default: "#fafafa",
+      default: mode === 'light' ? "#fafafa" : "#0f0f0f",
+      paper: mode === 'light' ? "#ffffff" : "#1a1a1a",
+    },
+    text: {
+      primary: mode === 'light' ? "#111827" : "#ffffff",
+      secondary: mode === 'light' ? "#6b7280" : "#a1a1aa",
     },
     grey: {
-      50: "#f9fafb",
-      100: "#f3f4f6",
-      200: "#e5e7eb",
-      300: "#d1d5db",
-      400: "#9ca3af",
-      500: "#6b7280",
-      600: "#4b5563",
-      700: "#374151",
-      800: "#1f2937",
-      900: "#111827",
+      50: mode === 'light' ? "#f9fafb" : "#1a1a1a",
+      100: mode === 'light' ? "#f3f4f6" : "#262626",
+      200: mode === 'light' ? "#e5e7eb" : "#404040",
+      300: mode === 'light' ? "#d1d5db" : "#525252",
+      400: mode === 'light' ? "#9ca3af" : "#737373",
+      500: mode === 'light' ? "#6b7280" : "#a1a1aa",
+      600: mode === 'light' ? "#4b5563" : "#d4d4d8",
+      700: mode === 'light' ? "#374151" : "#e4e4e7",
+      800: mode === 'light' ? "#1f2937" : "#f4f4f5",
+      900: mode === 'light' ? "#111827" : "#fafafa",
     },
   },
   typography: {
@@ -110,11 +118,39 @@ interface AppProviderProps {
   children: React.ReactNode
 }
 
-export function AppProvider({ children }: AppProviderProps) {
+function MaterialUIThemeProvider({ children }: { children: React.ReactNode }) {
+  const { theme: nextTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const materialTheme = React.useMemo(() => {
+    // Use resolvedTheme for better hydration, fallback to light
+    const themeMode = mounted ? (resolvedTheme === 'dark' ? 'dark' : 'light') : 'light'
+    return createAppTheme(themeMode)
+  }, [resolvedTheme, mounted])
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={materialTheme}>
       <CssBaseline />
       {children}
     </ThemeProvider>
+  )
+}
+
+export function AppProvider({ children }: AppProviderProps) {
+  return (
+    <NextThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={true}
+      disableTransitionOnChange={false}
+    >
+      <MaterialUIThemeProvider>
+        {children}
+      </MaterialUIThemeProvider>
+    </NextThemeProvider>
   )
 }

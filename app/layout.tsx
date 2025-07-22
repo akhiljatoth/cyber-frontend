@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { AppProvider } from "@/components/providers/app-provider"
+import { MainLayout } from "@/components/layout/main-layout"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,10 +19,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <AppProvider>
-          {children}
+          <MainLayout>
+            {children}
+          </MainLayout>
         </AppProvider>
       </body>
     </html>
