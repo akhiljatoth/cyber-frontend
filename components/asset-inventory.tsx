@@ -1,7 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Search, ExpandMore, Download, Refresh, MoreHoriz, ExpandLess } from "@mui/icons-material"
+import {
+  Search,
+  ExpandMore,
+  Download,
+  Refresh,
+  MoreHoriz,
+  ExpandLess,
+} from "@mui/icons-material"
 import {
   TextField,
   Button,
@@ -30,6 +37,7 @@ export function AssetInventory() {
 
   return (
     <Box>
+      {/* Header */}
       <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 3 }}>
         <Box>
           <Typography variant="h5" sx={{ fontWeight: "bold", color: "text.primary", mb: 1 }}>
@@ -83,7 +91,7 @@ export function AssetInventory() {
         </Box>
       </Box>
 
-      {/* Filter Controls */}
+      {/* Filters */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
         {[
           ["Select Severities", "0", "#e5e7eb"],
@@ -133,12 +141,14 @@ export function AssetInventory() {
 
       {/* Asset Cards */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+
         {/* PixPirate Card */}
         <Card sx={{
-          borderLeft: 4,
-          borderLeftColor: "#ef4444",
-          boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)",
-          borderRadius: 1,
+          borderLeft: "4px solid #800000", // Maroon vertical line
+          boxShadow: "none",
+          border: "1px solid #e5e7eb",
+          borderRadius: "8px",
+          mb: 1,
         }}>
           <CardContent sx={{ p: 0 }}>
             <Box
@@ -146,49 +156,58 @@ export function AssetInventory() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                p: 2,
+                px: 3,
+                py: 2,
                 cursor: "pointer",
                 "&:hover": {
-                  backgroundColor: "#f9fafb",
+                  backgroundColor: "#fafafa",
                 },
               }}
               onClick={() => toggleCardExpansion("pixpirate")}
             >
-              <Typography variant="h6" sx={{ fontWeight: 600, color: "#111827", fontSize: "16px" }}>
+              <Typography variant="h6" sx={{
+                fontWeight: 600,
+                color: "#111827",
+                fontSize: "16px",
+                fontFamily: "system-ui, -apple-system, sans-serif"
+              }}>
                 PixPirate
               </Typography>
-              <IconButton size="small" sx={{ color: "#6b7280" }}>
-                {expandedCards["pixpirate"] ? <ExpandLess /> : <ExpandMore />}
+              <IconButton size="small" sx={{ color: "#6b7280", p: 0.5 }}>
+                {expandedCards["pixpirate"] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
               </IconButton>
             </Box>
             <Collapse in={expandedCards["pixpirate"]}>
-              <Box sx={{ px: 2, pb: 2, borderTop: "1px solid #e5e7eb", bgcolor: "#fafafa" }}>
-                <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4, py: 2 }}>
-                  <Box>
-                    <Typography variant="body2" sx={{ color: "#6b7280", fontSize: "12px", fontWeight: 500 }}>
-                      Description
+              <Box sx={{ px: 3, pb: 3, pt: 2, borderTop: "1px solid #e5e7eb", bgcolor: "#fafafa" }}>
+                {/* Fields */}
+                {[
+                  ["Description", "PixPirate Exploits WhatsApp in THE LATEST Campaign"],
+                  ["Published On", "10-Dec-2024"],
+                  ["Published By", "Armaudit"],
+                ].map(([label, value], index) => (
+                  <Box key={index} sx={{ display: "flex", mb: 2 }}>
+                    <Typography variant="body2" sx={{
+                      color: "#6b7280",
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      minWidth: "100px",
+                      mr: 2
+                    }}>
+                      {label} :
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "#111827", mt: 0.5, fontSize: "13px" }}>
-                      PixPirate Exploits WhatsApp in THE LATEST Campaign
+                    <Typography variant="body2" sx={{
+                      color: "#111827",
+                      fontSize: "13px",
+                      lineHeight: 1.4,
+                      fontFamily: "system-ui, -apple-system, sans-serif",
+                      flex: 1
+                    }}>
+                      {value}
                     </Typography>
                   </Box>
-                  <Box>
-                    <Typography variant="body2" sx={{ color: "#6b7280", fontSize: "12px", fontWeight: 500 }}>
-                      Published On
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: "#111827", mt: 0.5, fontSize: "13px" }}>
-                      10-Dec-2024
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="body2" sx={{ color: "#6b7280", fontSize: "12px", fontWeight: 500 }}>
-                      Published By
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: "#111827", mt: 0.5, fontSize: "13px" }}>
-                      Armaudit
-                    </Typography>
-                  </Box>
-                </Box>
+                ))}
+
+                {/* Tags */}
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap", mb: 2 }}>
                   {["MALWARE", "ANDROID", "TROJAN", "EXPLOIT", "SOCIAL ENGINEERING", "SMISHING"].map((tag, index) => (
                     <Chip
@@ -199,22 +218,40 @@ export function AssetInventory() {
                         bgcolor: "#e5e7eb",
                         color: "#374151",
                         fontSize: "11px",
-                        height: 24,
+                        height: 22,
                         fontWeight: 500,
+                        borderRadius: "4px",
                         "& .MuiChip-label": {
-                          px: 1,
+                          px: 1.5,
+                          py: 0,
                         },
                       }}
                     />
                   ))}
                 </Box>
+
+                {/* Flag */}
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <Box sx={{
                     width: 20,
-                    height: 14,
-                    bgcolor: "#ff9500",
+                    height: 12,
                     borderRadius: "2px",
-                    border: "1px solid #d1d5db"
+                    border: "1px solid #d1d5db",
+                    position: "relative",
+                    overflow: "hidden",
+                    background: "linear-gradient(to bottom, #ff9933 0%, #ff9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #138808 66.66%, #138808 100%)",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      border: "0.5px solid #000080",
+                      background: "transparent"
+                    }
                   }} />
                 </Box>
               </Box>
@@ -223,12 +260,13 @@ export function AssetInventory() {
         </Card>
 
         {/* HeadMare Cards */}
-        {[1, 2].map((index) => (
+        {[1, 2, 3].map((index) => (
           <Card key={`headmare-${index}`} sx={{
-            borderLeft: 4,
-            borderLeftColor: "#f59e0b",
-            boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)",
-            borderRadius: 1,
+            borderLeft: "4px solid #f59e0b",
+            boxShadow: "none",
+            border: "1px solid #e5e7eb",
+            borderRadius: "8px",
+            mb: 1,
           }}>
             <CardContent sx={{ p: 0 }}>
               <Box
@@ -236,19 +274,25 @@ export function AssetInventory() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  p: 2,
+                  px: 3,
+                  py: 2,
                   cursor: "pointer",
                   "&:hover": {
-                    backgroundColor: "#f9fafb",
+                    backgroundColor: "#fafafa",
                   },
                 }}
                 onClick={() => toggleCardExpansion(`headmare-${index}`)}
               >
-                <Typography variant="h6" sx={{ fontWeight: 600, color: "#111827", fontSize: "16px" }}>
+                <Typography variant="h6" sx={{
+                  fontWeight: 600,
+                  color: "#111827",
+                  fontSize: "16px",
+                  fontFamily: "system-ui, -apple-system, sans-serif"
+                }}>
                   HeadMare
                 </Typography>
-                <IconButton size="small" sx={{ color: "#6b7280" }}>
-                  {expandedCards[`headmare-${index}`] ? <ExpandLess /> : <ExpandMore />}
+                <IconButton size="small" sx={{ color: "#6b7280", p: 0.5 }}>
+                  {expandedCards[`headmare-${index}`] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
                 </IconButton>
               </Box>
             </CardContent>
@@ -257,10 +301,11 @@ export function AssetInventory() {
 
         {/* Microsoft Windows Card */}
         <Card sx={{
-          borderLeft: 4,
-          borderLeftColor: "#ef4444",
-          boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)",
-          borderRadius: 1,
+          borderLeft: "4px solid #800000", // Maroon vertical line
+          boxShadow: "none",
+          border: "1px solid #e5e7eb",
+          borderRadius: "8px",
+          mb: 1,
         }}>
           <CardContent sx={{ p: 0 }}>
             <Box
@@ -268,65 +313,73 @@ export function AssetInventory() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                p: 2,
+                px: 3,
+                py: 2,
                 cursor: "pointer",
                 "&:hover": {
-                  backgroundColor: "#f9fafb",
+                  backgroundColor: "#fafafa",
                 },
               }}
               onClick={() => toggleCardExpansion("microsoft-windows")}
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography variant="h6" sx={{ fontWeight: 600, color: "#111827", fontSize: "16px" }}>
+                <Typography variant="h6" sx={{
+                  fontWeight: 600,
+                  color: "#111827",
+                  fontSize: "16px",
+                  fontFamily: "system-ui, -apple-system, sans-serif"
+                }}>
                   Microsoft Windows
                 </Typography>
                 <Chip
                   label="EXCLUSIVE"
                   size="small"
                   sx={{
-                    bgcolor: "#3b82f6",
+                    bgcolor: "#22c55e",
                     color: "white",
                     fontSize: "10px",
                     height: 20,
                     fontWeight: 600,
+                    borderRadius: "4px",
                     "& .MuiChip-label": {
-                      px: 1,
+                      px: 1.5,
+                      py: 0,
                     },
                   }}
                 />
               </Box>
-              <IconButton size="small" sx={{ color: "#6b7280" }}>
-                {expandedCards["microsoft-windows"] ? <ExpandLess /> : <ExpandMore />}
+              <IconButton size="small" sx={{ color: "#6b7280", p: 0.5 }}>
+                {expandedCards["microsoft-windows"] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
               </IconButton>
             </Box>
             <Collapse in={expandedCards["microsoft-windows"]}>
-              <Box sx={{ px: 2, pb: 2, borderTop: "1px solid #e5e7eb", bgcolor: "#fafafa" }}>
-                <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4, py: 2 }}>
-                  <Box>
-                    <Typography variant="body2" sx={{ color: "#6b7280", fontSize: "12px", fontWeight: 500 }}>
-                      Description
+              <Box sx={{ px: 3, pb: 3, pt: 2, borderTop: "1px solid #e5e7eb", bgcolor: "#fafafa" }}>
+                {[
+                  ["Description", "Microsoft Windows Common Log File System Driver Heap-Based Buffer Overflow Vulnerability incorporated by CISA Known Exploited Vulnerability (KEV) catalog"],
+                  ["Published On", "11-Dec-2024"],
+                  ["Published By", "Armaudit"],
+                ].map(([label, value], index) => (
+                  <Box key={index} sx={{ display: "flex", mb: 2 }}>
+                    <Typography variant="body2" sx={{
+                      color: "#6b7280",
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      minWidth: "100px",
+                      mr: 2
+                    }}>
+                      {label} :
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "#111827", mt: 0.5, fontSize: "13px", lineHeight: 1.4 }}>
-                      Microsoft Windows Common Log File System Driver Heap-Based Buffer Overflow Vulnerability Incorporated by CISA Known Exploited Vulnerability (KEV) catalog
+                    <Typography variant="body2" sx={{
+                      color: "#111827",
+                      fontSize: "13px",
+                      fontFamily: "system-ui, -apple-system, sans-serif",
+                      flex: 1
+                    }}>
+                      {value}
                     </Typography>
                   </Box>
-                  <Box>
-                    <Typography variant="body2" sx={{ color: "#6b7280", fontSize: "12px", fontWeight: 500 }}>
-                      Published On
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: "#111827", mt: 0.5, fontSize: "13px" }}>
-                      11-Dec-2024
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="body2" sx={{ color: "#6b7280", fontSize: "12px", fontWeight: 500 }}>
-                      Published By
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: "#111827", mt: 0.5, fontSize: "13px" }}>
-                      Armaudit
-                    </Typography>
-                  </Box>
-                </Box>
+                ))}
+
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap", mb: 2 }}>
                   {["VULNERABILITY", "CISA", "EXPLOIT", "KEV HEAP BASED", "BUFFER", "OVERFLOW"].map((tag, index) => (
                     <Chip
@@ -337,57 +390,43 @@ export function AssetInventory() {
                         bgcolor: "#e5e7eb",
                         color: "#374151",
                         fontSize: "11px",
-                        height: 24,
+                        height: 22,
                         fontWeight: 500,
+                        borderRadius: "4px",
                         "& .MuiChip-label": {
-                          px: 1,
+                          px: 1.5,
+                          py: 0,
                         },
                       }}
                     />
                   ))}
                 </Box>
+
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <Box sx={{
                     width: 20,
-                    height: 14,
-                    bgcolor: "#ff9500",
+                    height: 12,
                     borderRadius: "2px",
-                    border: "1px solid #d1d5db"
+                    border: "1px solid #d1d5db",
+                    position: "relative",
+                    overflow: "hidden",
+                    background: "linear-gradient(to bottom, #ff9933 0%, #ff9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #138808 66.66%, #138808 100%)",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      border: "0.5px solid #000080",
+                      background: "transparent"
+                    }
                   }} />
                 </Box>
               </Box>
             </Collapse>
-          </CardContent>
-        </Card>
-
-        {/* Additional HeadMare Card */}
-        <Card sx={{
-          borderLeft: 4,
-          borderLeftColor: "#f59e0b",
-          boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)",
-          borderRadius: 1,
-        }}>
-          <CardContent sx={{ p: 0 }}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                p: 2,
-                cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "#f9fafb",
-                },
-              }}
-              onClick={() => toggleCardExpansion("headmare-3")}
-            >
-              <Typography variant="h6" sx={{ fontWeight: 600, color: "#111827", fontSize: "16px" }}>
-                HeadMare
-              </Typography>
-              <IconButton size="small" sx={{ color: "#6b7280" }}>
-                {expandedCards["headmare-3"] ? <ExpandLess /> : <ExpandMore />}
-              </IconButton>
-            </Box>
           </CardContent>
         </Card>
       </Box>

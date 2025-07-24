@@ -18,7 +18,9 @@ export function ExecutiveInsight() {
       />
 
       {/* AI Summary Card */}
-      <AISummaryCard />
+      <Box sx={{ mb: 3 }}>
+        <AISummaryCard />
+      </Box>
 
       {/* Statistics Grid */}
       <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", lg: "repeat(3, 1fr)" }, gap: 3 }}>
