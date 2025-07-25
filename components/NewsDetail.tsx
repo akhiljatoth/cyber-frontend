@@ -25,7 +25,7 @@ const NewsDetail = ({ item, onClose }: Props) => {
       <Typography variant="h6" fontWeight={600}>
         {item.title}
       </Typography>
-      <Typography color="gray" fontSize={14} mt={0.5}>
+      <Typography color="text.secondary" fontSize={14} mt={0.5}>
         Select your fiat currency and your favourite payment method
       </Typography>
 
@@ -35,7 +35,7 @@ const NewsDetail = ({ item, onClose }: Props) => {
         <DetailBlock label="Published Date" value="13–Dec–2024" />
         <DetailBlock
           label="Status"
-          value={<Chip label={item.status} sx={{ bgcolor: "#4B3FE4", color: "white", fontWeight: 500 }} />}
+          value={<Chip label={item.status} sx={{ bgcolor: "primary.main", color: "white", fontWeight: 500 }} />}
         />
       </Box>
 
@@ -111,7 +111,7 @@ const NewsDetail = ({ item, onClose }: Props) => {
         ))}
       </Box>
 
-      <Box mt={4} p={2} bgcolor="#f9f9f9" borderRadius={2}>
+      <Box mt={4} p={2} bgcolor={(theme) => theme.palette.mode === 'dark' ? '#1f2937' : '#f9f9f9'} borderRadius={2}>
         <Typography variant="subtitle2" fontWeight={600}>
           AI Summary
         </Typography>
@@ -120,7 +120,7 @@ const NewsDetail = ({ item, onClose }: Props) => {
           etc.), interfaces, IoT (camera) devices, virtual hosted applications etc. from the organisation inventory of
           domains, subdomains, IPs. We continuously...
         </Typography>
-        <Typography variant="caption" color="gray" display="block" mt={1}>
+        <Typography variant="caption" color="text.secondary" display="block" mt={1}>
           AI-generated content may be incorrect. Learn more
         </Typography>
       </Box>

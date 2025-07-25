@@ -69,14 +69,14 @@ export function FilterDropdown({
         startIcon={icon}
         sx={{
           textTransform: "none",
-          borderColor: "grey.300",
+          borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.300',
           color: "text.primary",
-          bgcolor: "transparent",
+          bgcolor: "background.paper",
           minWidth: 120,
           justifyContent: "space-between",
           "&:hover": {
-            backgroundColor: "grey.50",
-            borderColor: "grey.400",
+            backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
+            borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : 'grey.400',
           },
         }}
       >
@@ -113,8 +113,11 @@ export function FilterDropdown({
           sx: {
             minWidth: 200,
             maxHeight: 300,
-            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-            border: "1px solid #e5e7eb",
+            boxShadow: (theme) => theme.palette.mode === 'dark'
+              ? "0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2)"
+              : "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+            border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
+            bgcolor: 'background.paper',
           },
         }}
       >

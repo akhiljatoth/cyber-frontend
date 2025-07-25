@@ -61,15 +61,15 @@ const NewsFlash = () => {
             size="small"
             sx={{
               textTransform: "none",
-              borderColor: "grey.300",
+              borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.300',
               color: "text.primary",
-              bgcolor: "white",
+              bgcolor: "background.paper",
               minWidth: 140,
               height: 32,
               fontSize: "13px",
               "&:hover": {
-                backgroundColor: "grey.50",
-                borderColor: "grey.400",
+                backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
+                borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : 'grey.400',
               },
             }}
           >
@@ -83,15 +83,15 @@ const NewsFlash = () => {
               onClick={() => handleRemoveCountry(country)}
               sx={{
                 textTransform: "none",
-                borderColor: "grey.300",
+                borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.300',
                 color: "text.primary",
-                bgcolor: "white",
+                bgcolor: "background.paper",
                 minWidth: 80,
                 height: 32,
                 fontSize: "13px",
                 "&:hover": {
-                  backgroundColor: "grey.50",
-                  borderColor: "grey.400",
+                  backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
+                  borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : 'grey.400',
                 },
               }}
             >
@@ -128,16 +128,16 @@ const NewsFlash = () => {
           size="small"
           sx={{
             textTransform: "none",
-            borderColor: "grey.300",
+            borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.300',
             color: "text.primary",
-            bgcolor: "white",
+            bgcolor: "background.paper",
             minWidth: 140,
             height: 32,
             fontSize: "13px",
             justifyContent: "space-between",
             "&:hover": {
-              backgroundColor: "grey.50",
-              borderColor: "grey.400",
+              backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
+              borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : 'grey.400',
             },
           }}
           endIcon={
@@ -172,16 +172,16 @@ const NewsFlash = () => {
           size="small"
           sx={{
             textTransform: "none",
-            borderColor: "grey.300",
+            borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.300',
             color: "text.primary",
-            bgcolor: "white",
+            bgcolor: "background.paper",
             minWidth: 140,
             height: 32,
             fontSize: "13px",
             justifyContent: "space-between",
             "&:hover": {
-              backgroundColor: "grey.50",
-              borderColor: "grey.400",
+              backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
+              borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : 'grey.400',
             },
           }}
           endIcon={
@@ -216,16 +216,16 @@ const NewsFlash = () => {
           size="small"
           sx={{
             textTransform: "none",
-            borderColor: "grey.300",
+            borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.300',
             color: "text.primary",
-            bgcolor: "white",
+            bgcolor: "background.paper",
             minWidth: 140,
             height: 32,
             fontSize: "13px",
             justifyContent: "space-between",
             "&:hover": {
-              backgroundColor: "grey.50",
-              borderColor: "grey.400",
+              backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
+              borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : 'grey.400',
             },
           }}
           endIcon={

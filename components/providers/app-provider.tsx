@@ -52,11 +52,11 @@ const createAppTheme = (mode: 'light' | 'dark') => createTheme({
     // Customize Material-UI components globally
     MuiCard: {
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
           borderRadius: "8px",
-          border: "1px solid #e5e7eb",
-        },
+          border: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.divider : '#e5e7eb'}`,
+        }),
       },
     },
     MuiButton: {
@@ -66,22 +66,22 @@ const createAppTheme = (mode: 'light' | 'dark') => createTheme({
           borderRadius: "6px",
           fontWeight: 500,
         },
-        outlined: {
-          borderColor: "#d1d5db",
-          color: "#374151",
+        outlined: ({ theme }) => ({
+          borderColor: theme.palette.mode === 'dark' ? '#374151' : "#d1d5db",
+          color: theme.palette.mode === 'dark' ? theme.palette.text.primary : "#374151",
           "&:hover": {
-            backgroundColor: "#f9fafb",
-            borderColor: "#d1d5db",
+            backgroundColor: theme.palette.mode === 'dark' ? '#374151' : "#f9fafb",
+            borderColor: theme.palette.mode === 'dark' ? '#4b5563' : "#d1d5db",
           },
-        },
+        }),
       },
     },
     MuiLinearProgress: {
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           borderRadius: "8px",
-          backgroundColor: "#e5e7eb",
-        },
+          backgroundColor: theme.palette.mode === 'dark' ? '#374151' : "#e5e7eb",
+        }),
         bar: {
           borderRadius: "8px",
         },
@@ -97,18 +97,18 @@ const createAppTheme = (mode: 'light' | 'dark') => createTheme({
     },
     MuiTableCell: {
       styleOverrides: {
-        head: {
+        head: ({ theme }) => ({
           fontWeight: 600,
-          color: "#6b7280",
-          backgroundColor: "#f9fafb",
-        },
+          color: theme.palette.mode === 'dark' ? theme.palette.text.primary : "#6b7280",
+          backgroundColor: theme.palette.mode === 'dark' ? '#1f2937' : "#f9fafb",
+        }),
       },
     },
     MuiDrawer: {
       styleOverrides: {
-        paper: {
-          borderRight: "1px solid #e5e7eb",
-        },
+        paper: ({ theme }) => ({
+          borderRight: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.divider : '#e5e7eb'}`,
+        }),
       },
     },
   },

@@ -65,27 +65,27 @@ export function AssetInventory() {
             size="small"
             endIcon={<ExpandMore />}
             sx={{
-              bgcolor: "white",
-              borderColor: "#d1d5db",
-              color: "#374151",
+              bgcolor: "background.paper",
+              borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#d1d5db',
+              color: "text.primary",
               textTransform: "none",
               fontSize: "13px",
               height: 32,
               "&:hover": {
-                backgroundColor: "#f9fafb",
-                borderColor: "#9ca3af",
+                backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#f9fafb',
+                borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : '#9ca3af',
               },
             }}
           >
             Select Duration
           </Button>
-          <IconButton size="small" sx={{ color: "#6b7280" }}>
+          <IconButton size="small" sx={{ color: "text.secondary" }}>
             <Download />
           </IconButton>
-          <IconButton size="small" sx={{ color: "#6b7280" }}>
+          <IconButton size="small" sx={{ color: "text.secondary" }}>
             <Refresh />
           </IconButton>
-          <IconButton size="small" sx={{ color: "#6b7280" }}>
+          <IconButton size="small" sx={{ color: "text.secondary" }}>
             <MoreHoriz />
           </IconButton>
         </Box>
@@ -94,10 +94,10 @@ export function AssetInventory() {
       {/* Filters */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
         {[
-          ["Select Severities", "0", "#e5e7eb"],
+          ["Select Severities", "0", (theme: any) => theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'],
           ["Select Countries", "1", "#22c55e"],
-          ["Select Regions", "0", "#e5e7eb"],
-          ["Select Industries", "0", "#e5e7eb"],
+          ["Select Regions", "0", (theme: any) => theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'],
+          ["Select Industries", "0", (theme: any) => theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'],
         ].map(([label, count, color], index) => (
           <Button
             key={index}
@@ -105,15 +105,15 @@ export function AssetInventory() {
             size="small"
             endIcon={<ExpandMore />}
             sx={{
-              bgcolor: "white",
-              borderColor: "#d1d5db",
-              color: "#374151",
+              bgcolor: "background.paper",
+              borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#d1d5db',
+              color: "text.primary",
               textTransform: "none",
               fontSize: "13px",
               height: 32,
               "&:hover": {
-                backgroundColor: "#f9fafb",
-                borderColor: "#9ca3af",
+                backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#f9fafb',
+                borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : '#9ca3af',
               },
             }}
           >
@@ -124,7 +124,7 @@ export function AssetInventory() {
                 size="small"
                 sx={{
                   bgcolor: color,
-                  color: count === "0" ? "#6b7280" : "white",
+                  color: count === "0" ? "text.secondary" : "white",
                   ml: 1,
                   height: 16,
                   fontSize: "10px",
@@ -146,9 +146,10 @@ export function AssetInventory() {
         <Card sx={{
           borderLeft: "4px solid #800000", // Maroon vertical line
           boxShadow: "none",
-          border: "1px solid #e5e7eb",
+          border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
           borderRadius: "8px",
           mb: 1,
+          bgcolor: 'background.paper',
         }}>
           <CardContent sx={{ p: 0 }}>
             <Box
@@ -160,25 +161,31 @@ export function AssetInventory() {
                 py: 2,
                 cursor: "pointer",
                 "&:hover": {
-                  backgroundColor: "#fafafa",
+                  backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#fafafa',
                 },
               }}
               onClick={() => toggleCardExpansion("pixpirate")}
             >
               <Typography variant="h6" sx={{
                 fontWeight: 600,
-                color: "#111827",
+                color: "text.primary",
                 fontSize: "16px",
                 fontFamily: "system-ui, -apple-system, sans-serif"
               }}>
                 PixPirate
               </Typography>
-              <IconButton size="small" sx={{ color: "#6b7280", p: 0.5 }}>
+              <IconButton size="small" sx={{ color: "text.secondary", p: 0.5 }}>
                 {expandedCards["pixpirate"] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
               </IconButton>
             </Box>
             <Collapse in={expandedCards["pixpirate"]}>
-              <Box sx={{ px: 3, pb: 3, pt: 2, borderTop: "1px solid #e5e7eb", bgcolor: "#fafafa" }}>
+              <Box sx={{
+                px: 3,
+                pb: 3,
+                pt: 2,
+                borderTop: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
+                bgcolor: (theme) => theme.palette.mode === 'dark' ? '#1f2937' : '#fafafa'
+              }}>
                 {/* Fields */}
                 {[
                   ["Description", "PixPirate Exploits WhatsApp in THE LATEST Campaign"],
@@ -187,7 +194,7 @@ export function AssetInventory() {
                 ].map(([label, value], index) => (
                   <Box key={index} sx={{ display: "flex", mb: 2 }}>
                     <Typography variant="body2" sx={{
-                      color: "#6b7280",
+                      color: "text.secondary",
                       fontSize: "12px",
                       fontWeight: 500,
                       minWidth: "100px",
@@ -196,7 +203,7 @@ export function AssetInventory() {
                       {label} :
                     </Typography>
                     <Typography variant="body2" sx={{
-                      color: "#111827",
+                      color: "text.primary",
                       fontSize: "13px",
                       lineHeight: 1.4,
                       fontFamily: "system-ui, -apple-system, sans-serif",
@@ -215,8 +222,8 @@ export function AssetInventory() {
                       label={tag}
                       size="small"
                       sx={{
-                        bgcolor: "#e5e7eb",
-                        color: "#374151",
+                        bgcolor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb',
+                        color: (theme) => theme.palette.mode === 'dark' ? '#d1d5db' : '#374151',
                         fontSize: "11px",
                         height: 22,
                         fontWeight: 500,
@@ -236,7 +243,7 @@ export function AssetInventory() {
                     width: 20,
                     height: 12,
                     borderRadius: "2px",
-                    border: "1px solid #d1d5db",
+                    border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#4b5563' : '#d1d5db'}`,
                     position: "relative",
                     overflow: "hidden",
                     background: "linear-gradient(to bottom, #ff9933 0%, #ff9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #138808 66.66%, #138808 100%)",
@@ -264,9 +271,10 @@ export function AssetInventory() {
           <Card key={`headmare-${index}`} sx={{
             borderLeft: "4px solid #f59e0b",
             boxShadow: "none",
-            border: "1px solid #e5e7eb",
+            border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
             borderRadius: "8px",
             mb: 1,
+            bgcolor: 'background.paper',
           }}>
             <CardContent sx={{ p: 0 }}>
               <Box
@@ -278,20 +286,20 @@ export function AssetInventory() {
                   py: 2,
                   cursor: "pointer",
                   "&:hover": {
-                    backgroundColor: "#fafafa",
+                    backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#fafafa',
                   },
                 }}
                 onClick={() => toggleCardExpansion(`headmare-${index}`)}
               >
                 <Typography variant="h6" sx={{
                   fontWeight: 600,
-                  color: "#111827",
+                  color: "text.primary",
                   fontSize: "16px",
                   fontFamily: "system-ui, -apple-system, sans-serif"
                 }}>
                   HeadMare
                 </Typography>
-                <IconButton size="small" sx={{ color: "#6b7280", p: 0.5 }}>
+                <IconButton size="small" sx={{ color: "text.secondary", p: 0.5 }}>
                   {expandedCards[`headmare-${index}`] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
                 </IconButton>
               </Box>
@@ -303,9 +311,10 @@ export function AssetInventory() {
         <Card sx={{
           borderLeft: "4px solid #800000", // Maroon vertical line
           boxShadow: "none",
-          border: "1px solid #e5e7eb",
+          border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
           borderRadius: "8px",
           mb: 1,
+          bgcolor: 'background.paper',
         }}>
           <CardContent sx={{ p: 0 }}>
             <Box
@@ -317,7 +326,7 @@ export function AssetInventory() {
                 py: 2,
                 cursor: "pointer",
                 "&:hover": {
-                  backgroundColor: "#fafafa",
+                  backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#fafafa',
                 },
               }}
               onClick={() => toggleCardExpansion("microsoft-windows")}
@@ -325,7 +334,7 @@ export function AssetInventory() {
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                 <Typography variant="h6" sx={{
                   fontWeight: 600,
-                  color: "#111827",
+                  color: "text.primary",
                   fontSize: "16px",
                   fontFamily: "system-ui, -apple-system, sans-serif"
                 }}>
@@ -348,12 +357,18 @@ export function AssetInventory() {
                   }}
                 />
               </Box>
-              <IconButton size="small" sx={{ color: "#6b7280", p: 0.5 }}>
+              <IconButton size="small" sx={{ color: "text.secondary", p: 0.5 }}>
                 {expandedCards["microsoft-windows"] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
               </IconButton>
             </Box>
             <Collapse in={expandedCards["microsoft-windows"]}>
-              <Box sx={{ px: 3, pb: 3, pt: 2, borderTop: "1px solid #e5e7eb", bgcolor: "#fafafa" }}>
+              <Box sx={{
+                px: 3,
+                pb: 3,
+                pt: 2,
+                borderTop: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
+                bgcolor: (theme) => theme.palette.mode === 'dark' ? '#1f2937' : '#fafafa'
+              }}>
                 {[
                   ["Description", "Microsoft Windows Common Log File System Driver Heap-Based Buffer Overflow Vulnerability incorporated by CISA Known Exploited Vulnerability (KEV) catalog"],
                   ["Published On", "11-Dec-2024"],
@@ -361,7 +376,7 @@ export function AssetInventory() {
                 ].map(([label, value], index) => (
                   <Box key={index} sx={{ display: "flex", mb: 2 }}>
                     <Typography variant="body2" sx={{
-                      color: "#6b7280",
+                      color: "text.secondary",
                       fontSize: "12px",
                       fontWeight: 500,
                       minWidth: "100px",
@@ -370,7 +385,7 @@ export function AssetInventory() {
                       {label} :
                     </Typography>
                     <Typography variant="body2" sx={{
-                      color: "#111827",
+                      color: "text.primary",
                       fontSize: "13px",
                       fontFamily: "system-ui, -apple-system, sans-serif",
                       flex: 1
@@ -387,8 +402,8 @@ export function AssetInventory() {
                       label={tag}
                       size="small"
                       sx={{
-                        bgcolor: "#e5e7eb",
-                        color: "#374151",
+                        bgcolor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb',
+                        color: (theme) => theme.palette.mode === 'dark' ? '#d1d5db' : '#374151',
                         fontSize: "11px",
                         height: 22,
                         fontWeight: 500,
@@ -407,7 +422,7 @@ export function AssetInventory() {
                     width: 20,
                     height: 12,
                     borderRadius: "2px",
-                    border: "1px solid #d1d5db",
+                    border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#4b5563' : '#d1d5db'}`,
                     position: "relative",
                     overflow: "hidden",
                     background: "linear-gradient(to bottom, #ff9933 0%, #ff9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #138808 66.66%, #138808 100%)",

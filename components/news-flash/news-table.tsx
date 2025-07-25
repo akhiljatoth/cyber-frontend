@@ -187,67 +187,78 @@ export function NewsTable({ filters }: NewsTableProps) {
           sx={{
             width: 300,
             "& .MuiOutlinedInput-root": {
-              backgroundColor: "white",
+              backgroundColor: "background.paper",
             },
           }}
         />
       </Box>
 
-      <TableContainer component={Paper} sx={{ boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)", borderRadius: 1 }}>
+      <TableContainer component={Paper} sx={{
+        boxShadow: (theme) => theme.palette.mode === 'dark'
+          ? "0 1px 3px 0 rgb(0 0 0 / 0.3)"
+          : "0 1px 3px 0 rgb(0 0 0 / 0.1)",
+        borderRadius: 1,
+        bgcolor: 'background.paper',
+        border: (theme) => theme.palette.mode === 'dark'
+          ? `1px solid ${theme.palette.divider}`
+          : 'none',
+      }}>
         <Table>
           <TableHead>
-            <TableRow sx={{ backgroundColor: "#f9fafb" }}>
+            <TableRow sx={{
+              backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#1f2937' : '#f9fafb'
+            }}>
               <TableCell sx={{
                 fontWeight: 600,
-                color: "#374151",
+                color: "text.primary",
                 fontSize: "13px",
                 py: 2,
-                borderBottom: "1px solid #e5e7eb"
+                borderBottom: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`
               }}>
                 Date
               </TableCell>
               <TableCell sx={{
                 fontWeight: 600,
-                color: "#374151",
+                color: "text.primary",
                 fontSize: "13px",
                 py: 2,
-                borderBottom: "1px solid #e5e7eb"
+                borderBottom: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`
               }}>
                 Threat Actor
               </TableCell>
               <TableCell sx={{
                 fontWeight: 600,
-                color: "#374151",
+                color: "text.primary",
                 fontSize: "13px",
                 py: 2,
-                borderBottom: "1px solid #e5e7eb"
+                borderBottom: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`
               }}>
                 Title
               </TableCell>
               <TableCell sx={{
                 fontWeight: 600,
-                color: "#374151",
+                color: "text.primary",
                 fontSize: "13px",
                 py: 2,
-                borderBottom: "1px solid #e5e7eb"
+                borderBottom: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`
               }}>
                 Country
               </TableCell>
               <TableCell sx={{
                 fontWeight: 600,
-                color: "#374151",
+                color: "text.primary",
                 fontSize: "13px",
                 py: 2,
-                borderBottom: "1px solid #e5e7eb"
+                borderBottom: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`
               }}>
                 Region
               </TableCell>
               <TableCell sx={{
                 fontWeight: 600,
-                color: "#374151",
+                color: "text.primary",
                 fontSize: "13px",
                 py: 2,
-                borderBottom: "1px solid #e5e7eb"
+                borderBottom: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`
               }}>
                 Status
               </TableCell>
@@ -262,14 +273,14 @@ export function NewsTable({ filters }: NewsTableProps) {
                 sx={{
                   cursor: "pointer",
                   "&:hover": {
-                    backgroundColor: "#f9fafb",
+                    backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : '#f9fafb',
                   },
-                  borderBottom: "1px solid #e5e7eb",
+                  borderBottom: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
                 }}
               >
                 <TableCell sx={{
                   fontSize: "13px",
-                  color: "#374151",
+                  color: "text.primary",
                   py: 2,
                   borderBottom: "none"
                 }}>
@@ -277,7 +288,7 @@ export function NewsTable({ filters }: NewsTableProps) {
                 </TableCell>
                 <TableCell sx={{
                   fontSize: "13px",
-                  color: "#374151",
+                  color: "text.primary",
                   py: 2,
                   borderBottom: "none"
                 }}>
@@ -286,7 +297,7 @@ export function NewsTable({ filters }: NewsTableProps) {
                 <TableCell sx={{
                   maxWidth: 400,
                   fontSize: "13px",
-                  color: "#374151",
+                  color: "text.primary",
                   py: 2,
                   borderBottom: "none"
                 }}>
@@ -294,7 +305,7 @@ export function NewsTable({ filters }: NewsTableProps) {
                 </TableCell>
                 <TableCell sx={{
                   fontSize: "13px",
-                  color: "#374151",
+                  color: "text.primary",
                   py: 2,
                   borderBottom: "none"
                 }}>
@@ -302,7 +313,7 @@ export function NewsTable({ filters }: NewsTableProps) {
                 </TableCell>
                 <TableCell sx={{
                   fontSize: "13px",
-                  color: "#374151",
+                  color: "text.primary",
                   py: 2,
                   borderBottom: "none"
                 }}>
@@ -316,8 +327,8 @@ export function NewsTable({ filters }: NewsTableProps) {
                     label={item.status}
                     size="small"
                     sx={{
-                      bgcolor: item.status === "VIEWED" ? "#4ade80" : "#e5e7eb",
-                      color: item.status === "VIEWED" ? "white" : "#6b7280",
+                      bgcolor: item.status === "VIEWED" ? "#4ade80" : (theme) => theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb',
+                      color: item.status === "VIEWED" ? "white" : (theme) => theme.palette.mode === 'dark' ? '#d1d5db' : '#6b7280',
                       fontWeight: 600,
                       fontSize: "11px",
                       height: 24,
@@ -343,19 +354,19 @@ export function NewsTable({ filters }: NewsTableProps) {
           labelRowsPerPage="Item per page"
           labelDisplayedRows={({ from, to, count }) => `${from}/${to} of ${count.toLocaleString()} Records`}
           sx={{
-            borderTop: "1px solid #e5e7eb",
-            backgroundColor: "#f9fafb",
+            borderTop: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
+            backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#1f2937' : '#f9fafb',
             "& .MuiTablePagination-toolbar": {
               fontSize: "13px",
-              color: "#374151",
+              color: "text.primary",
             },
             "& .MuiTablePagination-selectLabel": {
               fontSize: "13px",
-              color: "#374151",
+              color: "text.primary",
             },
             "& .MuiTablePagination-displayedRows": {
               fontSize: "13px",
-              color: "#374151",
+              color: "text.primary",
             },
           }}
         />
@@ -365,7 +376,7 @@ export function NewsTable({ filters }: NewsTableProps) {
         anchor="right"
         open={!!selectedNews}
         onClose={() => setSelectedNews(null)}
-        PaperProps={{ sx: { width: 700, padding: 3 } }}
+        PaperProps={{ sx: { width: 700, padding: 3, bgcolor: 'background.paper' } }}
       >
         {selectedNews && <NewsDetail item={selectedNews} />}
       </Drawer>

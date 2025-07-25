@@ -55,16 +55,16 @@ export function CountryDropdown({ label, options, value, onChange, badge }: Coun
         onClick={handleClick}
         sx={{
           textTransform: "none",
-          borderColor: "grey.300",
+          borderColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.300',
           color: "text.primary",
-          bgcolor: "white",
+          bgcolor: "background.paper",
           minWidth: 140,
           height: 32,
           fontSize: "13px",
           justifyContent: "space-between",
           "&:hover": {
-            backgroundColor: "grey.50",
-            borderColor: "grey.400",
+            backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
+            borderColor: (theme) => theme.palette.mode === 'dark' ? '#4b5563' : 'grey.400',
           },
         }}
         endIcon={
@@ -102,9 +102,12 @@ export function CountryDropdown({ label, options, value, onChange, badge }: Coun
           sx: {
             width: 250,
             maxHeight: 400,
-            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-            border: "1px solid #e5e7eb",
+            boxShadow: (theme) => theme.palette.mode === 'dark'
+              ? "0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2)"
+              : "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+            border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? '#374151' : '#e5e7eb'}`,
             borderRadius: 1,
+            bgcolor: 'background.paper',
           },
         }}
         transformOrigin={{ horizontal: 'left', vertical: 'top' }}
@@ -147,7 +150,7 @@ export function CountryDropdown({ label, options, value, onChange, badge }: Coun
                 py: 1,
                 px: 2,
                 "&:hover": {
-                  backgroundColor: "grey.50",
+                  backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#374151' : 'grey.50',
                 },
               }}
             >
