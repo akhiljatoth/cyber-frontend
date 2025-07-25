@@ -33,10 +33,10 @@ export function MainLayout({ children }: MainLayoutProps) {
       {/* Global Header - Always visible */}
       <GlobalHeader />
 
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", height: "calc(100vh - 64px)" }}>
         <Sidebar />
         {/* Main Content */}
-        <Box component="main" sx={{ flex: 1, p: 3 }}>
+        <Box component="main" sx={{ flex: 1, p: 3, overflow: "auto" }}>
           {isDashboardRoute && <NavigationTabs />}
           <Box sx={{ mt: isDashboardRoute ? 3 : 0 }}>
             {children}

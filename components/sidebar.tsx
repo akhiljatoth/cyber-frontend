@@ -49,10 +49,9 @@ export function Sidebar() {
           boxSizing: "border-box",
           bgcolor: "background.paper",
           borderRight: "1px solid",
-          borderColor: "grey.200",
+          borderColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.divider : 'grey.200',
           position: "relative",
-          height: "calc(100vh - 64px)", // Account for header height
-          top: 0,
+          height: "calc(100vh - 64px)", // Full height minus header
         },
       }}
     >
